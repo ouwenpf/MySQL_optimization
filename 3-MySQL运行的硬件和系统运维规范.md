@@ -66,8 +66,8 @@ log_throttle_queries_not_using_indexes=10 没有使用索引的SQL每分钟记�
 
 
 # MySQL关键参数
-![](images/3/01)  
-![](images/3/02)
+![](images/3/01.jpg)  
+![](images/3/02.jpg)
 
 <pre>
 innodb_flush_sync =0 如果设置1 下面两个参数设置将无效
@@ -84,4 +84,4 @@ innodb_io_capacity_max
 - 慢查询
 - 临时表和临时文件
 
-![](images/3/03)
+![](images/3/03.jpg)  
