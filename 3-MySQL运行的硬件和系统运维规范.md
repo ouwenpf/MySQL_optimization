@@ -85,3 +85,19 @@ innodb_io_capacity_max
 - 临时表和临时文件
 
 ![](images/3/03.jpg)  
+
+
+# 本节小结
+- 选择(CPU,内存)最大性能模式运行MySQL,并且关闭NUMA
+- 选用搞性能I/O设备运行MySQL
+- 选择linux系统,配合xfs+deadline/noop环境
+- 做好数据库的网络信息安全防范
+- 做好数据库备份&恢复测试,防止发生意外
+- 重要性操作前谨慎再谨慎
+
+
+# 学习方法
+![](images/3/04.jpg)  
+
+# 提问艺术
+![](images/3/05.jpg)  
