@@ -47,11 +47,12 @@ innodb_buffer_pool_size为innodb_buffer_pool_chunk_size为整数倍,默认是整
 ## 4.理解其它MySQL特点
 
 - 不存图片,文件,长文本等大数据对象
-- 不跑复杂SQL,表达式运算,函数运算等
+- 不跑复杂SQL,表达式运算,函数运算等(底层是采用虚拟列,会有 额外的开销)
 - 不跑长事务  
 - 不跑全文检索
 - 不支持bitmap索引
-- MySQL8.0之前不支持统计直方图
+
+注意:8.0支持hash join,直方图,倒序索引,不可见索引,跳跃式索引扫描(index skip scan)
 
 
 ## 5.理解其它MySQL特点

@@ -1,3 +1,4 @@
+
 # OS部署规范
 
 - 关闭CPU节能模式，设为最性能模式  
@@ -39,6 +40,19 @@ log_throttle_queries_not_using_indexes=10 没有使用索引的SQL每分钟记�
 - 推广活动或上线新功能须提前通知DBA,请求压力测试评估和协助观察
 - 不使用super权限连接数据库,只读库必须开启super_read_only
 - 单标多次alter操作必须合并为一次操作
+<pre>
+ALTER TABLE `test`.`book` ADD COLUMN `gg` varchar(255) not NULL,algorithm=instant;
+添加一列
+添加或删除虚拟列。
+添加或删除列默认值。
+修改"ENUM"或"SET"列的定义 。
+更改索引类型。
+重命名表。
+
+	- ALGORITHM=INSTANT不支持包含全文索引的表；不支持临时表；不支持那些在数据字典表空间中创建的表
+	- 不支持压缩表，即该表行格式不能是 COMPRESSED
+	- 只能将新字段添加到表的尾巴上，不能添加到中间
+</pre>
 - 数据库DDL及重要SQL需提前交DBA审核
 - 重要业务库必须告知DBA重要等级,数据备份及时性要求
 - 不在业务高峰期批量更新,查询数据库

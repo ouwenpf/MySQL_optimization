@@ -1,0 +1,15 @@
+# 存储结构
+```
+Innodb_buffer_pool_wait_free 值不为0说明buffer bool不够用
+ 
+```
+
+READ COMMITED
+每次在读取数据都生成一个ReadView
+
+REPEATABLE READ
+在第一次读取数据时生成一个ReadView
+
+MVCC总结
+MVCC(Multi-Version Concurrentcy Control多版本并发控制)
+指的是在使用READ COMMITED和REPEATABLE READ这两种隔离级别的事务在执行普通的select操作时访问记录的版本链的过程，可以使不同事务读写，写读并发操作，从而提升数据库的性能；READ COMMITED和REPEATABLE READ这两个级别一个很大的不同就是：生产的ReadView时机不同，READ COMMITED在每次进行普通的select操作时都会生产一个ReadView，而REPEATABLE READ只是在第一次进行普通的select操作生产一个ReadView，之后的查询操作都是使用这个ReadView就好了
