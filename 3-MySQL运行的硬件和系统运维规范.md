@@ -21,7 +21,16 @@
 - 对不能使用弱密码
 - 有条件的话,要求定期更换密码(5.7起可以设置密码定期失效,在8.0还支持设置更多的密码安全策略)
 - 手动执行重要操作时,放在脚本里,提前演练,并且放creen里面执行
+
+<pre>
+[client]
+port            = 3306
+socket=/tmp/mysql3306.sock
+加入客户端my.cnf中可以省略使用socke参数,测试环境使用,生产环境建议不要使用
 - mysqladmin var|grep -i '参数名称'  , mysqladmin ext|grep -i '参数名称'   
+</pre>
+
+
 
 
 # 开发环境建议  
@@ -42,16 +51,10 @@ log_throttle_queries_not_using_indexes=10 没有使用索引的SQL每分钟记�
 - 单标多次alter操作必须合并为一次操作
 <pre>
 ALTER TABLE `test`.`book` ADD COLUMN `gg` varchar(255) not NULL,algorithm=instant;
-添加一列
-添加或删除虚拟列。
-添加或删除列默认值。
-修改"ENUM"或"SET"列的定义 。
-更改索引类型。
-重命名表。
-
-	- ALGORITHM=INSTANT不支持包含全文索引的表；不支持临时表；不支持那些在数据字典表空间中创建的表
-	- 不支持压缩表，即该表行格式不能是 COMPRESSED
-	- 只能将新字段添加到表的尾巴上，不能添加到中间
+是否支持instant特性
+是否支持online ddl,也就是说会不会阻塞ddl
+是否可以in-place
+是否需要rebuild table
 </pre>
 - 数据库DDL及重要SQL需提前交DBA审核
 - 重要业务库必须告知DBA重要等级,数据备份及时性要求

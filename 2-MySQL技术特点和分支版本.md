@@ -7,6 +7,11 @@
 - 单进程,多线程
 - 每个连接只能用到一个逻辑CPU
 - 每个Query/SQL只能用到一个逻辑CPU
+<pre>
+并行读目前只有一种情况,就是在执行check table和select count(*)的时候
+innodb表支持在聚集索引上的并行读,即对主键索引的并行读,其它目前都不支持
+具体说明请看https://www.cnblogs.com/cchust/p/12347166.html
+</pre>
 - 在超高并发且多垃圾SQL的情况下,对MySQL而言是个大灾难
 - 不使用MySQL 5.1以前的版本,因为多核CPU利用更差
 - MySQL新版本高并发可以很好利用多核CPU
@@ -21,6 +26,8 @@
 ```
 innodb_buffer_pool_chunk_size定义buffer_pool块的大小默认128M
 innodb_buffer_pool_size为innodb_buffer_pool_chunk_size为整数倍,默认是整数倍的时候可以动态调整
+至于原因可以查询图解参数说明-01.jpg
+
 ```
 - 每个session buffer诸如sort/join/read buffer/tmp table不宜设置太高容易OMM
 - 使用/优化建议
@@ -48,7 +55,7 @@ innodb_buffer_pool_size为innodb_buffer_pool_chunk_size为整数倍,默认是整
 
 - 不存图片,文件,长文本等大数据对象
 - 不跑复杂SQL,表达式运算,函数运算等(底层是采用虚拟列,会有 额外的开销)
-- 不跑长事务  
+- 不跑长事务(长时间不提交,不回滚的事务) ,大事务(同一个事务内大量数据修改,插入,更新)
 - 不跑全文检索
 - 不支持bitmap索引
 
