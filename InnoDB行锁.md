@@ -132,3 +132,6 @@ select *  from  t1 where c3>=1  for update;
 - 如果是唯一索引(含主键索引)上的等值查询，则退化成LOCK_REC_NOT_GAP
 - 非唯一索引上的等值查询，向右遍历遇到最后一个不符合记录时先加上next-key lock，而后退化成LOCK_GAP
 - 由于设计/代码上的"缺陷"，唯一索引(含主键索引)上的小于范围查询时，遇到第一个不符合条件的记录也会加上LOCK_ORDINARY(RC级别下先获取再释放，RR级别下不释放)
+
+
+http://keithlan.github.io/
